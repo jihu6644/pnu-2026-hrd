@@ -1,0 +1,491 @@
+/* ==========================================================================
+   2026 부산대학교 교직원 직무연수 - 상세 페이지 스타일 (detail.css)
+   ========================================================================== */
+
+/* Breadcrumb Bar */
+.breadcrumb-section {
+  padding: 24px 0 12px;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.btn-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--pnu-blue-800);
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-back-link:hover {
+  background: var(--pnu-blue-50);
+  border-color: var(--pnu-blue-100);
+  transform: translateX(-2px);
+}
+
+.btn-back-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Detail Main Layout */
+.detail-layout {
+  padding-bottom: 64px;
+}
+
+/* Detail Header Card */
+.detail-header-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 36px 40px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--pnu-blue-800);
+}
+
+.detail-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.detail-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detail-category-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--pnu-blue-800);
+  background: var(--pnu-blue-50);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.detail-code {
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.detail-title {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--text-main);
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+}
+
+.detail-summary {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Bento Info Grid (Key Metadata 6 cards)
+   ========================================================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.bento-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.bento-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+}
+
+.bento-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--pnu-blue-50);
+  color: var(--pnu-blue-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bento-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+.bento-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.bento-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.bento-sub {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Content Sections (상세소개, 학습목표, 주요내용)
+   ========================================================================== */
+.detail-content-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.content-block {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  box-shadow: var(--shadow-sm);
+}
+
+.content-block-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.content-block-header svg {
+  width: 22px;
+  height: 22px;
+  color: var(--pnu-blue-800);
+}
+
+.content-block-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.015em;
+}
+
+.content-body-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  word-break: keep-all;
+}
+
+/* Objectives Checklist */
+.objectives-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.objective-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  background: #f8fafc;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid #f1f5f9;
+}
+
+.objective-item svg {
+  width: 18px;
+  height: 18px;
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Curriculum Steps / Grid */
+.curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.curriculum-card {
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.curriculum-step-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--pnu-blue-800);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.curriculum-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Action Bar (Sticky bottom or block)
+   ========================================================================== */
+.action-bar-card {
+  background: linear-gradient(135deg, var(--pnu-blue-900) 0%, var(--pnu-blue-800) 100%);
+  color: #ffffff;
+  border-radius: var(--radius-xl);
+  padding: 28px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 48px;
+  box-shadow: var(--shadow-md);
+}
+
+.action-bar-info h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.action-bar-info p {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: var(--pnu-blue-900);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-primary-apply:hover {
+  background: #f0f9ff;
+  color: var(--pnu-blue-700);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary-apply svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-secondary-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-secondary-action:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+}
+
+.btn-secondary-action svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================================================================
+   Related Courses Section
+   ========================================================================== */
+.related-section {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 36px;
+}
+
+.related-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.related-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* 404 / Error State in Detail */
+.detail-not-found {
+  text-align: center;
+  padding: 80px 20px;
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  border: 1px dashed var(--border-medium);
+  margin: 40px 0;
+}
+
+.not-found-icon {
+  width: 56px;
+  height: 56px;
+  color: var(--text-muted);
+  margin: 0 auto 20px;
+}
+
+.not-found-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.not-found-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .curriculum-grid {
+    grid-template-columns: 1fr;
+  }
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-header-card {
+    padding: 24px 20px;
+  }
+  .detail-title {
+    font-size: 1.5rem;
+  }
+  .detail-summary {
+    font-size: 0.95rem;
+  }
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .bento-card {
+    padding: 16px;
+  }
+  .content-block {
+    padding: 24px 20px;
+  }
+  .action-bar-card {
+    padding: 24px 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-primary-apply, .btn-secondary-action {
+    justify-content: center;
+  }
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+}

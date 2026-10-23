@@ -1,0 +1,12 @@
+# Temporary test & setup scripts
+*.py
+*.pyc
+__pycache__/
+*.png
+*.csv
+!sheet_clean.csv
+tools/
+data_summary.json
+courses_analysis.json
+.DS_Store
+Thumbs.db

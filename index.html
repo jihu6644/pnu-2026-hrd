@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 부산대학교 교직원 직무연수 종합 안내</title>
+  <meta name="description" content="2026년도 부산대학교 교직원 직무연수 프로그램, 법정의무교육, 직무공통, AI·데이터, 행정실무 연수 실시간 안내">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Pretendard Web Font CDN -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- PapaParse CDN for CSV Parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+  <!-- Project CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- Site Header (GNB) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="부산대학교 직무연수 홈으로 이동">
+        <img src="assets/pnu_logo.svg" alt="부산대학교 로고" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title-wrap">
+            <span class="brand-univ">부산대학교</span>
+            <span class="year-badge">2026</span>
+          </div>
+          <span class="brand-service">교직원 직무연수 포털</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <div class="sync-status" title="구글 시트 실시간 연동 중">
+          <span class="sync-dot"></span>
+          <span>실시간 동기화</span>
+        </div>
+        <button type="button" class="btn-refresh" id="btnRefresh" title="구글 시트 최신 데이터 즉시 새로고침">
+          <i data-lucide="refresh-cw"></i>
+          <span>새로고침</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <div class="hero-tag">
+        <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+        <span>2026 Pusan National University HRD</span>
+      </div>
+      <h1 class="hero-title">2026 부산대학교 교직원 직무연수</h1>
+      <p class="hero-desc">
+        교직원의 직무 전문성과 미래 역량을 키우는 맞춤형 교육과정을 실시간으로 확인하고 신청하세요.
+      </p>
+
+      <!-- Key Statistics Bar -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">총 연수 과정</span>
+          <span class="stat-value" id="statTotal">-</span>
+          <span class="stat-sub">연간 전체 프로그램</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">법정의무교육</span>
+          <span class="stat-value" id="statMandatory">-</span>
+          <span class="stat-sub">전 직원 필수 이수</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">정보화·AI·데이터</span>
+          <span class="stat-value" id="statAi">-</span>
+          <span class="stat-sub">디지털 행정 역량</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">주관 부서</span>
+          <span class="stat-value" id="statDept">-</span>
+          <span class="stat-sub">교내 전문 운영 기관</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="container">
+    
+    <!-- Law Notice Banner -->
+    <div class="notice-banner" role="alert">
+      <div class="notice-left">
+        <div class="notice-icon-box">
+          <i data-lucide="info"></i>
+        </div>
+        <div>
+          <strong>법정의무교육 이수 안내</strong> : 「양성평등기본법」, 「개인정보보호법」 등에 따른 6개 필수 교육은 전 직원이 연내(12/31까지) 반드시 이수해야 합니다.
+        </div>
+      </div>
+      <button type="button" class="notice-btn" id="noticeMandatoryBtn">
+        법정의무교육 바로보기 →
+      </button>
+    </div>
+
+    <!-- Search & Filter Toolbar -->
+    <section class="toolbar-section" id="searchSection" aria-label="연수 검색 및 필터">
+      <!-- Search & Sort Row -->
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <i data-lucide="search" class="search-icon"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="과정명, 직무분야, 담당부서, 한줄소개 검색..."
+            autocomplete="off"
+          >
+          <button type="button" class="btn-clear-search" id="btnClearSearch" title="검색어 지우기">
+            <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+          </button>
+        </div>
+
+        <div class="sort-wrap">
+          <select id="sortSelect" class="select-custom" aria-label="정렬 기준 선택">
+            <option value="code-asc">과정코드 순</option>
+            <option value="name-asc">과정명 가나다 순</option>
+            <option value="period-asc">교육일정 빠른 순</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Pills Tabs -->
+      <div class="category-tabs-wrap" id="categoryTabs" role="tablist" aria-label="직무 분야 필터">
+        <!-- Rendered dynamically by main.js -->
+      </div>
+
+      <!-- Detailed Filters Row -->
+      <div class="filters-row">
+        <div class="filter-group">
+          <label for="filterRequirement" class="filter-label">이수구분</label>
+          <select id="filterRequirement" class="filter-select">
+            <option value="전체">전체 구분</option>
+            <option value="필수">필수</option>
+            <option value="필수(해당자)">필수(해당자)</option>
+            <option value="권장">권장</option>
+            <option value="선택">선택</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterMethod" class="filter-label">교육방식</label>
+          <select id="filterMethod" class="filter-select">
+            <option value="전체">전체 방식</option>
+            <option value="온라인">온라인</option>
+            <option value="집합">집합</option>
+            <option value="혼합">혼합(온/오프)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterTarget" class="filter-label">대상</label>
+          <select id="filterTarget" class="filter-select">
+            <option value="전체">전체 대상</option>
+            <option value="전 직원">전 직원</option>
+            <option value="실무자">실무자</option>
+            <option value="관리자">관리자</option>
+            <option value="신규자">신규자</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterDepartment" class="filter-label">주관부서</label>
+          <select id="filterDepartment" class="filter-select">
+            <option value="전체">부서 전체</option>
+            <!-- Rendered dynamically -->
+          </select>
+        </div>
+
+        <button type="button" class="btn-reset-filters" id="btnResetFilters">
+          <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i>
+          <span>필터 초기화</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Results Header -->
+    <div class="results-bar">
+      <div class="results-count" id="resultsCount">연수 과정을 불러오는 중입니다...</div>
+    </div>
+
+    <!-- Course Cards Grid -->
+    <section class="courses-grid" id="coursesGrid" aria-label="연수 과정 목록">
+      <!-- Skeletons rendered initially, then populated by main.js -->
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-top">
+        <div class="footer-info">
+          <h4>부산대학교 교직원 직무연수 포털</h4>
+          <p>46241 부산광역시 금정구 부산대학로63번길 2 (장전동) 인재개발원 / 총무과 / 정보화본부</p>
+          <p>본 사이트의 연수 안내 데이터는 구글 스프레드시트와 실시간으로 동기화됩니다.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://docs.google.com/spreadsheets/d/1sWeq6LCPTp0I6ith07XQizLm-KcDvAcbeNZBHkOBOvk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            <i data-lucide="file-spreadsheet" style="width: 14px; height: 14px;"></i>
+            <span>구글 시트 원본 데이터</span>
+          </a>
+          <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+            <i data-lucide="arrow-up" style="width: 14px; height: 14px;"></i>
+            <span>맨 위로</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Pusan National University. All rights reserved.</span>
+        <span>2026 직무연수 운영 관리 시스템</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
